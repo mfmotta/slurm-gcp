@@ -21,12 +21,20 @@
 variable "project_id" {
   type        = string
   description = "Project ID to create resources in."
+  sensitive   = true
+}
+
+variable "zone" {
+  type        = string
+  description = "GCP VM zone."
+  sensitive   = true
 }
 
 variable "slurm_cluster_name" {
   type        = string
   description = "Cluster name, used for resource naming."
   default     = "full"
+  sensitive   = false
 }
 
 variable "enable_devel" {
@@ -151,7 +159,7 @@ EOD
   type = object({
     server_ip = string
     user      = string
-    password  = string # sensitive
+    password  = string 
     db_name   = string
   })
   default   = null
