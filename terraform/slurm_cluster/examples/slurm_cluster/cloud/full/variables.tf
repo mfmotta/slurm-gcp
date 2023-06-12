@@ -24,6 +24,12 @@ variable "project_id" {
   sensitive   = true
 }
 
+variable "credentials" {
+  type        = string
+  description = "GCP service account key."
+  sensitive   = true
+}
+
 variable "zone" {
   type        = string
   description = "GCP VM zone."
