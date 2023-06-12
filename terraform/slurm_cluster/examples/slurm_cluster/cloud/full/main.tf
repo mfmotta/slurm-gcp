@@ -173,7 +173,7 @@ locals {
 }*/
 
 provider "google" {
-  credentials = var.credentials
+  credentials = file(var.credentials_file)
   project = var.project_id
   region  = var.region
   zone    = var.zone
