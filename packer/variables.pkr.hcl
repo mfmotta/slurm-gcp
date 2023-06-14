@@ -24,6 +24,8 @@ variable "zone" {
   type = string
 }
 
+variable "access_token" {}
+
 variable "slurmgcp_version" {
   description = "slurm-gcp version used in the image family name."
   type        = string

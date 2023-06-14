@@ -16,8 +16,10 @@
 # GENERAL #
 ###########
 
-project_id = "<PROJECT_ID>"
+project_id = "hpc-gpus"
 zone       = "us-central1-a"
+
+access_token = "ya29.a0AWY7CknA-EvVe-O531kWCva1XgYvjhuBHS0dH2pTfqq4fta2OEQoaSgKtcQmg9DQsiFDGqHu9Fnd_zL-xvFcDBVoLhtLF_dh5wVoj4kEksVL59_ScJ-MUt32uocRNm0EFinrH6GtRY4ino5iNQgtxwU0IYUzaCgYKAZISARISFQG1tDrpl_0ThD04fH1dy5eFpbCXhQ0163"
 
 # prefix = null
 
@@ -26,10 +28,10 @@ zone       = "us-central1-a"
 #########
 
 # NOTE: Your Project ID will be automatically appended
-source_image_project_id = "cloud-hpc-image-public"
+source_image_project_id = "ubuntu-os-cloud"
 
-#source_image        = null
-source_image_family = "hpc-centos-7"
+source_image        = "/var/lib/docker/overlay2"
+source_image_family = "ubuntu-2004-lts"
 
 # disk_type = "pd-standard"
 # disk_size = 32
