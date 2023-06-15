@@ -58,10 +58,9 @@ source "googlecompute" "image" {
   ### general ###
   project_id = var.project_id
   zone       = var.zone
-  access_token = var.access_token
 
   ### image ###
-  source_image_project_id = [var.project_id, var.source_image_project_id]
+  source_image_project_id = [var.project_id]#, var.source_image_project_id]
   skip_create_image       = var.skip_create_image
 
   ### network ###

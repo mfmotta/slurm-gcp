@@ -24,7 +24,6 @@ variable "zone" {
   type = string
 }
 
-variable "access_token" {}
 
 variable "slurmgcp_version" {
   description = "slurm-gcp version used in the image family name."
@@ -181,10 +180,10 @@ variable "install_gcsfuse" {
 # BUILD VM VARIABLES #
 ######################
 
-variable "source_image_project_id" {
-  description = "project id of the source image."
-  type        = string
-}
+#variable "source_image_project_id" {
+#  description = "project id of the source image."
+#  type        = string
+#}
 
 variable "source_image" {
   description = "Source disk image."

@@ -16,10 +16,8 @@
 # GENERAL #
 ###########
 
-project_id = "hpc-gpus"
+project_id = "sturdy-pier-368212"
 zone       = "us-central1-a"
-
-access_token = "ya29.a0AWY7CknA-EvVe-O531kWCva1XgYvjhuBHS0dH2pTfqq4fta2OEQoaSgKtcQmg9DQsiFDGqHu9Fnd_zL-xvFcDBVoLhtLF_dh5wVoj4kEksVL59_ScJ-MUt32uocRNm0EFinrH6GtRY4ino5iNQgtxwU0IYUzaCgYKAZISARISFQG1tDrpl_0ThD04fH1dy5eFpbCXhQ0163"
 
 # prefix = null
 
@@ -27,10 +25,10 @@ access_token = "ya29.a0AWY7CknA-EvVe-O531kWCva1XgYvjhuBHS0dH2pTfqq4fta2OEQoaSgKt
 # IMAGE #
 #########
 
-# NOTE: Your Project ID will be automatically appended
-source_image_project_id = "ubuntu-os-cloud"
+# NOTE: Your Project ID will be automatically appended # "ubuntu-os-cloud" "ubuntu-2004-lts"
+#source_image_project_id = "sturdy-pier-368212"
 
-source_image        = "/var/lib/docker/overlay2"
+source_image        = "my-nvidia-cuda116-ubuntu2004"
 source_image_family = "ubuntu-2004-lts"
 
 # disk_type = "pd-standard"
@@ -63,6 +61,9 @@ service_account_email = "default"
 
 service_account_scopes = [
   "https://www.googleapis.com/auth/cloud-platform",
+  "service-1031488086820@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+  "us-central1-docker.pkg.dev/sturdy-pier-368212/my-repo/"
+  #"serviceAccount:1031488086820-compute@developer.gserviceaccount.com"
 ]
 
 ###########
