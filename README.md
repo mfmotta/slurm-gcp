@@ -1,10 +1,9 @@
-# Slurm on Google Cloud Platform
-
-Notice: This is a branch where I keep my changes to master forked from [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp)
-
-## Setting up a cluster on GCP
+# Slurm Cluster on Google Cloud Platform
 
 This is a quick guide to set up a GPU cluster on GCP.
+
+Notice: This branch differs from master forked from [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp). [Here](https://github.com/mfmotta/slurm-gcp/tree/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full) you can find the configuration files used in this guide.
+
 
 Requirements:
 
@@ -82,7 +81,7 @@ machine_type           = "n1-standard-4"
 
 <br>
 
-We use a single gpu per node and a maximum node count of two. We also use preemptible machines and a reduced SuspendTime to reduce costs.
+This configuration has a single gpu per node and a maximum node count of two. We also use preemptible machines and a reduced SuspendTime to reduce costs.
 
 
 
