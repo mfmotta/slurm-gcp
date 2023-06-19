@@ -43,18 +43,25 @@ locals {
   variant_str = try(length(var.variant), 0) > 0 ? "-${var.variant}" : ""
 
   # If image_family_alt is set, use it instead of source_image_family
-  image_os_name    = try(length(var.image_family_alt), 0) > 0 ? var.image_family_alt : var.source_image_family
-  generated_family = "${local.prefix_str}${local.root_str}-${local.image_os_name}${local.variant_str}"
+  #image_os_name    = try(length(var.image_family_alt), 0) > 0 ? var.image_family_alt : var.source_image_family
+  #generated_family = "${local.prefix_str}${local.root_str}-${local.image_os_name}${local.variant_str}"
 
   # if image_family_name is set, use it for image_family instead of the generated one.
-  image_family = try(length(var.image_family_name), 0) > 0 ? var.image_family_name : local.generated_family
+  #image_family = try(length(var.image_family_name), 0) > 0 ? var.image_family_name : local.generated_family
 }
 
 ##########
 # SOURCE #
 ##########
 
-source "googlecompute" "image" {
+#A source block has two important labels: a builder type and a name. e.g. docker and ubuntu
+
+source "docker" "my_source" {
+  image  = var.docker_image
+  commit = true
+}
+
+/*source "googlecompute" "image" {
   ### general ###
   project_id = var.project_id
   zone       = var.zone
@@ -74,10 +81,10 @@ source "googlecompute" "image" {
 
   ### image ###
   source_image        = var.source_image
-  source_image_family = var.source_image_family
+  #source_image_family = var.source_image_family
 
-  image_name        = "${local.image_family}-{{timestamp}}"
-  image_family      = local.image_family
+  #image_name        = "${local.image_family}-{{timestamp}}"
+  #image_family      = "mm_test"#local.image_family
   image_description = "slurm-gcp-v5"
   image_licenses    = var.image_licenses
   image_labels      = var.labels
@@ -92,7 +99,7 @@ source "googlecompute" "image" {
   #temporary_key_pair_bits   = 0
 
   ### instance ###
-  instance_name = "${local.image_family}-{{timestamp}}"
+  instance_name = "mm-{{timestamp}}" ##"${local.image_family}-{{timestamp}}"
   machine_type  = var.machine_type
   preemptible   = var.preemptible
   labels        = var.labels
@@ -107,7 +114,7 @@ source "googlecompute" "image" {
   }
 
   state_timeout = "10m"
-}
+}*/
 
 #########
 # BUILD #
@@ -117,10 +124,12 @@ build {
   ### general ###
   name = "slurm-gcp"
 
-  sources = ["sources.googlecompute.image"]
+  #sources = ["sources.googlecompute.image"]
+  sources = ["sources.docker.my_source"]
 
   ### provision Slurm ###
-  provisioner "ansible" {
+  
+  /*provisioner "ansible" {
     playbook_file = "${local.ansible_dir}/playbook.yml"
     galaxy_file   = "${local.ansible_dir}/requirements.yml"
     ansible_env_vars = [
@@ -145,6 +154,7 @@ build {
       user            = provisioner.value.user
     }
   }
+  */
 
   ### post processor ###
   post-processor "manifest" {
@@ -159,9 +169,11 @@ build {
   }
 
   ### clean up /home/packer ###
-  provisioner "shell" {
+  /* provisioner "shell" {
     inline = [
       "sudo su root -c 'userdel -rf packer'"
     ]
-  }
+  }*/
 }
+
+

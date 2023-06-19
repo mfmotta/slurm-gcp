@@ -28,8 +28,11 @@ zone       = "us-central1-a"
 # NOTE: Your Project ID will be automatically appended # "ubuntu-os-cloud" "ubuntu-2004-lts"
 #source_image_project_id = "sturdy-pier-368212"
 
-source_image        = "my-nvidia-cuda116-ubuntu2004"
-source_image_family = "ubuntu-2004-lts"
+#source_image        = "my-nvidia-cuda116-ubuntu2004"
+#source_image_family = "ubuntu-2004-lts"
+
+
+docker_image = "nvidia/cuda:11.6.0-devel-ubuntu20.04"
 
 # disk_type = "pd-standard"
 # disk_size = 32
@@ -61,9 +64,8 @@ service_account_email = "default"
 
 service_account_scopes = [
   "https://www.googleapis.com/auth/cloud-platform",
-  "service-1031488086820@gcp-sa-artifactregistry.iam.gserviceaccount.com",
-  "us-central1-docker.pkg.dev/sturdy-pier-368212/my-repo/"
-  #"serviceAccount:1031488086820-compute@developer.gserviceaccount.com"
+  "https://www.googleapis.com/auth/artifactregistry.readonly"
+  #storage service account for bucket: service-1031488086820@gs-project-accounts.iam.gserviceaccount.com
 ]
 
 ###########

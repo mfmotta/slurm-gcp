@@ -185,6 +185,21 @@ variable "install_gcsfuse" {
 #  type        = string
 #}
 
+packer {
+  required_plugins {
+    docker = {
+      version = ">= 0.0.7"
+      source = "github.com/hashicorp/docker"
+    }
+  }
+}
+
+variable "docker_image" {
+  type    = string
+  default = null
+}
+
+
 variable "source_image" {
   description = "Source disk image."
   type        = string
@@ -207,6 +222,7 @@ variable "service_account_scopes" {
   description = <<-EOD
 Service account scopes to attach to the instance. See
 https://cloud.google.com/compute/docs/access/service-accounts.
+and https://developers.google.com/identity/protocols/oauth2/scopes
 EOD
   type        = list(string)
   default = [
