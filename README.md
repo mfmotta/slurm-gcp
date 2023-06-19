@@ -1,8 +1,18 @@
 # Slurm Cluster on Google Cloud Platform
 
-This is a quick guide to set up a GPU cluster on GCP.
+
+This is a quick guide to set up a GPU cluster on GCP. 
+
+This cluster is relatively low-cost, and can be used to train models such as [Open Pretrained Transformers](https://github.com/mfmotta/open_pretrained_transformers) with number of parameters $N \approx 10^6$.
+
+
+More details on training time and costs per epoch for values of $N$ to come.
 
 [Here](https://github.com/mfmotta/slurm-gcp/tree/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full) you can find the configuration files used in this guide.
+
+<br>
+
+**Author:** Mariele Motta
 
 <br>
 
@@ -13,7 +23,9 @@ This is a quick guide to set up a GPU cluster on GCP.
 
 - [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) installed
 
-For more details and a starting tutorial, please refer to [Build Infrastructure - Terraform GCP Example](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build)
+<br>
+
+For more details and a starting tutorial, please refer to [Build Infrastructure - Terraform GCP Example](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build).
 
 
 <br>
@@ -22,7 +34,7 @@ For more details and a starting tutorial, please refer to [Build Infrastructure 
 
 <br>
 
-1 - Fork or clone [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp)
+1 - Fork or clone [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp).
 
 2 - In [slurm-gcp/terraform/slurm_cluster/examples/slurm_cluster/cloud/full](https://github.com/SchedMD/slurm-gcp/tree/master/terraform/slurm_cluster/examples/slurm_cluster/cloud/full), edit the files ``example.tfvars``, ``variables.tf``, and ``main.tf``. 
 
