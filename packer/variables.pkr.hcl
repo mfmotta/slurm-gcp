@@ -43,6 +43,15 @@ variable "image_family_name" {
   default     = null
 }
 
+packer {
+  required_plugins {
+    docker = {
+      version = ">= 0.0.7"
+      source = "github.com/hashicorp/docker"
+    }
+  }
+}
+
 ##################
 # SSH CONNECTION #
 ##################
@@ -180,18 +189,9 @@ variable "install_gcsfuse" {
 # BUILD VM VARIABLES #
 ######################
 
-#variable "source_image_project_id" {
-#  description = "project id of the source image."
-#  type        = string
-#}
-
-packer {
-  required_plugins {
-    docker = {
-      version = ">= 0.0.7"
-      source = "github.com/hashicorp/docker"
-    }
-  }
+variable "source_image_project_id" {
+  description = "project id of the source image."
+  type        = string
 }
 
 variable "docker_image" {

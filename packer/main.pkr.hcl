@@ -61,60 +61,6 @@ source "docker" "my_source" {
   commit = true
 }
 
-/*source "googlecompute" "image" {
-  ### general ###
-  project_id = var.project_id
-  zone       = var.zone
-
-  ### image ###
-  source_image_project_id = [var.project_id]#, var.source_image_project_id]
-  skip_create_image       = var.skip_create_image
-
-  ### network ###
-  network_project_id = var.network_project_id
-  subnetwork         = var.subnetwork
-  tags               = var.tags
-
-  ### service account ###
-  service_account_email = var.service_account_email
-  scopes                = var.service_account_scopes
-
-  ### image ###
-  source_image        = var.source_image
-  #source_image_family = var.source_image_family
-
-  #image_name        = "${local.image_family}-{{timestamp}}"
-  #image_family      = "mm_test"#local.image_family
-  image_description = "slurm-gcp-v5"
-  image_licenses    = var.image_licenses
-  image_labels      = var.labels
-
-  ### ssh ###
-  ssh_username              = var.ssh_username
-  ssh_password              = var.ssh_password
-  ssh_clear_authorized_keys = true
-  use_iap                   = var.use_iap
-  use_os_login              = var.use_os_login
-  temporary_key_pair_type   = "ed25519"
-  #temporary_key_pair_bits   = 0
-
-  ### instance ###
-  instance_name = "mm-{{timestamp}}" ##"${local.image_family}-{{timestamp}}"
-  machine_type  = var.machine_type
-  preemptible   = var.preemptible
-  labels        = var.labels
-
-  ### disk ###
-  disk_size = var.disk_size
-  disk_type = var.disk_type
-
-  ### metadata ###
-  metadata = {
-    block-project-ssh-keys = "TRUE"
-  }
-
-  state_timeout = "10m"
-}*/
 
 #########
 # BUILD #
@@ -122,39 +68,11 @@ source "docker" "my_source" {
 
 build {
   ### general ###
-  name = "slurm-gcp"
+  name = "my-build"
 
   #sources = ["sources.googlecompute.image"]
   sources = ["sources.docker.my_source"]
-
-  ### provision Slurm ###
-  
-  /*provisioner "ansible" {
-    playbook_file = "${local.ansible_dir}/playbook.yml"
-    galaxy_file   = "${local.ansible_dir}/requirements.yml"
-    ansible_env_vars = [
-      "ANSIBLE_CONFIG=${local.ansible_dir}/ansible.cfg",
-    ]
-    extra_arguments = [
-      "--extra-vars",
-      "${jsonencode(local.ansible_vars)}",
-    ]
-    use_proxy = false
-  }
-
-  dynamic "provisioner" {
-    # using labels this way effectively creates 'provisioner "ansible"' blocks
-    labels   = ["ansible"]
-    for_each = var.extra_ansible_provisioners
-
-    content {
-      playbook_file   = provisioner.value.playbook_file
-      roles_path      = provisioner.value.galaxy_file
-      extra_arguments = provisioner.value.extra_arguments
-      user            = provisioner.value.user
-    }
-  }
-  */
+ 
 
   ### post processor ###
   post-processor "manifest" {
@@ -168,12 +86,6 @@ build {
     inline = ["echo $PACKER_BUILD_NAME >> build.txt"]
   }
 
-  ### clean up /home/packer ###
-  /* provisioner "shell" {
-    inline = [
-      "sudo su root -c 'userdel -rf packer'"
-    ]
-  }*/
 }
 
 
