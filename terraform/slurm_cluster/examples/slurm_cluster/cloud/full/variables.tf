@@ -21,22 +21,27 @@
 variable "project_id" {
   type        = string
   description = "Project ID to create resources in."
-  sensitive   = true
 }
 
-variable "credentials_file" {}
+variable "credentials_file" {
+  type = string
+  description = "json file with GCP service account key"
+}
+ 
+variable "region" {
+  type        = string
+  description = "The default region to place resources in."
+}
 
 variable "zone" {
   type        = string
   description = "GCP VM zone."
-  sensitive   = true
 }
-
+  
 variable "slurm_cluster_name" {
   type        = string
   description = "Cluster name, used for resource naming."
   default     = "full"
-  sensitive   = false
 }
 
 variable "enable_devel" {
@@ -101,10 +106,6 @@ EOD
   default     = false
 }
 
-variable "region" {
-  type        = string
-  description = "The default region to place resources in."
-}
 
 ###########
 # NETWORK #
