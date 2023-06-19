@@ -2,82 +2,93 @@
 
 This is a quick guide to set up a GPU cluster on GCP.
 
-Notice: This branch differs from master forked from [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp). [Here](https://github.com/mfmotta/slurm-gcp/tree/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full) you can find the configuration files used in this guide.
+[Here](https://github.com/mfmotta/slurm-gcp/tree/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full) you can find the configuration files used in this guide.
 
+<br>
 
-Requirements:
+## Requirements:
+<br>
 
-    - a [Google Cloud Platform project](https://console.cloud.google.com/freetrial/)
-    - (Terraform)[What is Infrastructure as Code with Terraform?] installed
+- a [Google Cloud Platform project](https://console.cloud.google.com/freetrial/)
+
+- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) installed
 
 For more details and a starting tutorial, please refer to [Build Infrastructure - Terraform GCP Example](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build)
 
+
+<br>
+
+## Setup
+
+<br>
 
 1 - Fork or clone [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp)
 
 2 - In [slurm-gcp/terraform/slurm_cluster/examples/slurm_cluster/cloud/full](https://github.com/SchedMD/slurm-gcp/tree/master/terraform/slurm_cluster/examples/slurm_cluster/cloud/full), edit the files ``example.tfvars``, ``variables.tf``, and ``main.tf``. 
 
-Our cluster has the following configuration (we only list some of the variables):
+Our setup creates a cluster with the following configuration (we only list some of the variables), see [example.tfvars](https://github.com/mfmotta/slurm-gcp/blob/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full/example.tfvars):
 
-**Login node:**
-
-disk_size_gb             = 16
-
-disk_type                = "pd-standard"
-
-machine_type             = "n1-standard-2"
-
-source_image             = "us-central1-docker.pkg.dev/your-project-id/your-repo/your-image:your-image-tag"
-
-Notice this considers you have uploaded an image to the repository ``your-repo`` in GCP's [Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling). You can also use a base image from other registries, e.g. https://github.com/SchedMD/slurm-gcp/blob/master/docs/images.md.
-
----    
-
-**Controller node:**
-
-disk_size_gb           = 16
-
-disk_type              = "pd-standard"
-
-machine_type           = "n1-standard-4"
-
----
-
-**Partitions:**
 <br>
 
- - **partition #1** 
+- **Login node:**
 
-    node_count_dynamic_max = 2 
+    disk_size_gb             = 16
 
-    disk_size_gb           = 16
+    disk_type                = "pd-standard"
 
-    disk_type              = "pd-standard"
+    machine_type             = "n1-standard-2"
 
-    machine_type           = "c2-standard-4"
+    source_image             = "us-central1-docker.pkg.dev/your-project-id/your-repo/your-image:your-image-tag"
 
-    preemptible            = true  
+    Notice this considers you have uploaded an image to the repository ``your-repo`` in GCP's [Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling). You can also use a base image from other registries, e.g. https://github.com/SchedMD/slurm-gcp/blob/master/docs/images.md.
 
- - **partition #2**
+<br>  
 
-    partition_conf = {
-        SuspendTime          = 120
-    }
-
-    node_count_dynamic_max = 2
+- **Controller node:**
 
     disk_size_gb           = 16
 
     disk_type              = "pd-standard"
-
-    gpu = {
-        count = 1
-        type  = "nvidia-tesla-t4"
-    }
 
     machine_type           = "n1-standard-4"
 
-    preemptible            = true 
+<br>
+
+- **Partitions:**
+<br>
+
+    - **partition #1** 
+
+        node_count_dynamic_max = 2 
+
+        disk_size_gb           = 16
+
+        disk_type              = "pd-standard"
+
+        machine_type           = "c2-standard-4"
+
+        preemptible            = true  
+
+    - **partition #2**
+
+        partition_conf = {
+            SuspendTime          = 120
+        }
+
+        node_count_dynamic_max = 2
+
+        disk_size_gb           = 16
+
+        disk_type              = "pd-standard"
+
+        gpu = {
+            count = 1
+            type  = "nvidia-tesla-t4"
+        }
+
+        machine_type           = "n1-standard-4"
+
+        preemptible            = true 
 
 <br>
 
