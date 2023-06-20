@@ -189,10 +189,6 @@ variable "install_gcsfuse" {
 # BUILD VM VARIABLES #
 ######################
 
-variable "source_image_project_id" {
-  description = "project id of the source image."
-  type        = string
-}
 
 variable "docker_image" {
   type    = string
