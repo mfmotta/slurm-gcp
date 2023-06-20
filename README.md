@@ -25,7 +25,7 @@ More details on training time and costs per epoch for values of $N$ to come.
 
 <br>
 
-For more details and a starting tutorial, please refer to [Build Infrastructure - Terraform GCP Example](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build).
+For more details and an introductory tutorial to Slurm with Terraform, please refer to [Build Infrastructure - Terraform GCP Example](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build).
 
 
 <br>
@@ -36,9 +36,9 @@ For more details and a starting tutorial, please refer to [Build Infrastructure 
 
 1 - Fork or clone [SchedMD/slurm-gcp](https://github.com/SchedMD/slurm-gcp).
 
-2 - In [slurm-gcp/terraform/slurm_cluster/examples/slurm_cluster/cloud/full](https://github.com/SchedMD/slurm-gcp/tree/master/terraform/slurm_cluster/examples/slurm_cluster/cloud/full), edit the files ``example.tfvars``, ``variables.tf``, and ``main.tf``. 
+2 - In [slurm-gcp/terraform/slurm_cluster/examples/slurm_cluster/cloud/full](https://github.com/SchedMD/slurm-gcp/tree/master/terraform/slurm_cluster/examples/slurm_cluster/cloud/full), edit the files ``example.tfvars``, ``variables.tf``, and ``main.tf``to configure your Slurm cluster.
 
-Our setup creates a cluster with the following configuration (we only list some of the variables), see [example.tfvars](https://github.com/mfmotta/slurm-gcp/blob/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full/example.tfvars):
+We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full) to create a cluster with the following configuration (see complete configuration in [example.tfvars](https://github.com/mfmotta/slurm-gcp/blob/mm_branch/terraform/slurm_cluster/examples/slurm_cluster/cloud/full/example.tfvars)):
 
 <br>
 
@@ -104,19 +104,20 @@ Our setup creates a cluster with the following configuration (we only list some 
 
 <br>
 
-This configuration has a single gpu per node and a maximum node count of two. We also use preemptible machines and a reduced SuspendTime to reduce costs.
+This cluster has a single GPU per node and a maximum node count of two. We use preemptible machines and a reduced SuspendTime to reduce costs.
 
 
 
-Notice we have included the variable ``credentials_file = "path/to/your-service-account-key.json"``-- see [Create a service account key](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build#:~:text=A%20GCP%20service%20account%20key%3A%20Create%20a%20service%20account%20key).
+Notice we have included the variable ``credentials_file = "path/to/your-service-account-key.json"``in the configuration files-- see [Create a service account key](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build#:~:text=A%20GCP%20service%20account%20key%3A%20Create%20a%20service%20account%20key).
 
-3 - To produce a plan for your infrastructure, run
+3 - To produce a plan for your infrastructure, run inside the ``full`` directory:
 
 ```
 terraform init
 terraform validate
 terraform plan -var-file=example.tfvars -out terraform.tfplan
 ```
+
 4 - Check the resources you are about to use --and predicted costs, then create your cluster with
 
 ```
