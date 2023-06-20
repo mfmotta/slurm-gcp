@@ -3,7 +3,7 @@
 
 This is a quick guide to set up a GPU cluster on GCP. 
 
-This cluster is relatively low-cost, and can be used to train models such as [Open Pretrained Transformers](https://github.com/mfmotta/open_pretrained_transformers) with number of parameters $N \approx 10^6$.
+This cluster is relatively low-cost, and can be used to train models such as [Open Pretrained Transformers](https://github.com/mfmotta/open_pretrained_transformers) with number of parameters $N \propto 10^6$.
 
 
 More details on training time and costs per epoch for values of $N$ to come.
