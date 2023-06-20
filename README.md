@@ -44,13 +44,13 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
 
 - **Login node:**
 
-    disk_size_gb             = 16
+    disk_size_gb             = 32
 
     disk_type                = "pd-standard"
 
     machine_type             = "n1-standard-2"
 
-    source_image             = "us-central1-docker.pkg.dev/your-project-id/your-repo/your-image:your-image-tag"
+    source_image_family      = "slurm-gcp-5-7-ubuntu-2004-lts" (defaults to slurm-gcp-5-7-hpc-centos-7)
 
     Notice this considers you have uploaded an image to the repository ``your-repo`` in GCP's [Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling). You can also use a base image from other registries, e.g. https://github.com/SchedMD/slurm-gcp/blob/master/docs/images.md.
 
@@ -58,11 +58,13 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
 
 - **Controller node:**
 
-    disk_size_gb           = 16
+    disk_size_gb           = 32
 
     disk_type              = "pd-standard"
 
     machine_type           = "n1-standard-4"
+
+    source_image_family    = "slurm-gcp-5-7-ubuntu-2004-lts"
 
 <br>
 
@@ -73,11 +75,13 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
 
         node_count_dynamic_max = 2 
 
-        disk_size_gb           = 16
+        disk_size_gb           = 32
 
         disk_type              = "pd-standard"
 
         machine_type           = "c2-standard-4"
+
+        source_image_family      = "slurm-gcp-5-7-ubuntu-2004-lts"
 
         preemptible            = true  
 
@@ -89,7 +93,7 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
 
         node_count_dynamic_max = 2
 
-        disk_size_gb           = 16
+        disk_size_gb           = 32
 
         disk_type              = "pd-standard"
 
@@ -99,6 +103,8 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
         }
 
         machine_type           = "n1-standard-4"
+ 
+        source_image_family    = "slurm-gcp-5-7-ubuntu-2004-lts"
 
         preemptible            = true 
 
