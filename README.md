@@ -52,7 +52,7 @@ We have [modified these files](https://github.com/mfmotta/slurm-gcp/tree/mm_bran
 
     source_image_family      = "slurm-gcp-5-7-ubuntu-2004-lts" (defaults to slurm-gcp-5-7-hpc-centos-7)
 
-    Notice this considers you have uploaded an image to the repository ``your-repo`` in GCP's [Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling). You can also use a base image from other registries, e.g. https://github.com/SchedMD/slurm-gcp/blob/master/docs/images.md.
+    <!-- Notice this considers you have uploaded an image to the repository ``your-repo`` in GCP's [Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling). You can also use a base image from other registries, e.g. --> See https://github.com/SchedMD/slurm-gcp/blob/master/docs/images.md for other images.
 
 <br>  
 
@@ -130,5 +130,10 @@ terraform plan -var-file=example.tfvars -out terraform.tfplan
 terraform apply terraform.tfplan
 ```
     
+5 - You can destroy the cluster infrastructure with
 
-    
+```
+terraform destroy -var-file=example.tfvars
+```
+
+
